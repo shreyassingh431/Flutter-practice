@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
 
+import 'Question.dart';
+
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyAppState();
+  }
+
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  var questIndex=0;
+
   void answerQuestions() {
-    print('What is Your favourite colour');
+    setState(() {
+      questIndex ++;
+      print(questIndex);
+    });
+
   }
 
 
@@ -25,8 +42,8 @@ class MyApp extends StatelessWidget {
         ),
         //body: Text('har har mahadev̥'),
         body: Column(
-          children: <Widget>[Text('The Question̥'),
-            RaisedButton(child: Text(questArray[0]),
+          children: <Widget>[Text(questArray[questIndex]),
+            RaisedButton(child: Question('Answer 1'),
               onPressed: answerQuestions,),
             RaisedButton(child: Text('Answer 2'),
               onPressed: () => print('3rd button clicked'),),
