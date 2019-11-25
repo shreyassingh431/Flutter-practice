@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shiv/answer.dart';
 
 import 'Question.dart';
 
@@ -42,17 +43,10 @@ class _MyAppState extends State<MyApp> {
         ),
         //body: Text('har har mahadev̥'),
         body: Column(
-          children: <Widget>[Text(questArray[questIndex]),
-            RaisedButton(child: Question('Answer 1'),
-              onPressed: answerQuestions,),
-            RaisedButton(child: Text('Answer 2'),
-              onPressed: () => print('3rd button clicked'),),
-            RaisedButton(child: Text('Answer 3'),
-              onPressed: () {
-                /*this type of functions cant be named */
-                /*your stuffs*/
-                print('3rd button clicked');
-              },)
+          children: <Widget>[Question(questArray[questIndex]),
+            Answer(answerQuestions),
+            Answer(answerQuestions),
+            Answer(answerQuestions),
           ],
         )
         ,
