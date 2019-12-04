@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shiv/answer.dart';
+import 'package:shiv/Quiz.dart';
+import 'package:shiv/Result.dart';
 
-import 'Question.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,70 +10,56 @@ class MyApp extends StatefulWidget {
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _MyAppState();
+
   }
 
 }
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  var questIndex = 0;
+  var _questIndex = 0;
 
-  void answerQuestions() {
+  void _answerQuestions() {
     setState(() {
-      questIndex ++;
-      print(questIndex);
+      _questIndex ++;
+      print(_questIndex);
     });
   }
 
 
   @override
   Widget build(BuildContext context) {
-    var questArray = [
-    {
-      'questionText'
-    :'what is fav colour',
-    'answers':['Red','black','blue','white'],
-    },
+    final _questArray = const [
+      {
+        'questionText': 'what is fav colour',
+        'answers': ['Red', 'black', 'blue', 'white'],
+      },
 
-    {
-    'questionText':'what is your fav animal',
-    'answers':['Red','black','blue','white'],
-    },
+      {
+        'questionText': 'what is your fav animal',
+        'answers': ['Red', 'black', 'blue', 'white'],
+      },
 
 
-    {
-    'questionText':'what is your name',
-    'answers':['shrx','shrx','shrx','shrx̥'],
-    },
+      {
+        'questionText': 'what is your name',
+        'answers': ['shrx', 'shrx', 'shrx', 'shrx̥'],
+      },
     ];
 
 
     return MaterialApp(
-    home: Scaffold(
-    appBar: AppBar(
-    title: Text('Jḁi Mata di'),
-    ),
-    //body: Text('har har mahadev̥'),
-    body: Column(
-    children: <Widget>[
-      Question(questArray[questIndex]['questionText'],
-    ),
-    ...(questArray[questIndex]['answers'] as List<String>).map((answers){
-      return Answer(answerQuestions,answers);
-    }).toList()
-
-    ],
-
-
-
-    /*children: <Widget>[Question(questArray[questIndex]),
-    Answer(answerQuestions),
-    Answer(answerQuestions),
-    Answer(answerQuestions),*/
-    )
-    ,
-    )
-    ,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Jḁi Mata di'),
+        ),
+        //body: Text('har har mahadev̥'),
+        body: _questIndex < _questArray.length ? Quiz(
+            answerQuestions: _answerQuestions,
+            questIndex: _questIndex,
+            questions: _questArray
+        ) : Result(),
+      ),
     );
   }
 }
